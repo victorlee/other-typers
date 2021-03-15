@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>French German typer</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="text/javascript">
+        function getReplacedText(latinText) {
+            if (!latinText) {
+                return "";
+        }
+            var replacedText = "";
+            for (var i = 0, len = latinText.length; i < len; i++) {
+                var curLetter = latinText[i];
+                var pos1Txt = latinText[i + 1];
+                var pos2Txt = latinText[i + 2];
+                if (!(curLetter == "")) {
+                    var dualLetter = latreplaced[curLetter + pos1Txt];
+                    if (dualLetter) {
+                        replacedText += dualLetter;
+                        i++;
+                        continue;
+                    }
+                }
+                replacedText += latreplaced[curLetter] || curLetter;
+            }
+            return replacedText;
+        }
+        
+     
+        var latreplaced = {
+        ÄäÖöÜüẞß
+"":"",
+"":"",
+"E1":"É",
+"e1":"é",
+"A2":"Â",
+"a2":"â",
+"A;":"Ä",
+"a;":"ä",
+"E2":"Ê",
+"e2":"ê",
+"I2":"Î",
+"i2":"î",
+"O2":"Ô",
+"o2":"ô",
+"O;":"Ö",
+"o;":"ö",
+"U2":"Û",
+"u2":"û",
+"A3":"À",
+"a3":"à",
+"E3":"È",
+"e3":"è",
+"U3":"Ù",
+"u3":"ù",
+"U;":"Ü",
+"u;":"ü",
+"A4":"Æ",
+"a4":"æ",
+"E4":"Ë",
+"e4":"ë",
+"I4":"Ï",
+"i4":"ï",
+"O4":"Œ",
+"o4":"œ",
+"U4":"Ü",
+"u4":"ü",
+"Y4":"Ÿ",
+"y4":"ÿ",
+"C4":"Ç",
+"c4":"ç",
+"S;":"ẞ",
+"s;":"ß",
+
+"_":"—",
+"<":"«",
+">": "»",
+'"':'„',
+'""':'“',
+"_": "–",
+"$": "€",
+"`": "&#8203;"
+        };
+
+        function onLatinTextChange(txt) {
+            var replacedTextareaElem = document.getElementById("replaced_textarea");
+            var div = document.createElement("div");
+            var replacedHtmlEntities = getReplacedText(txt);
+            div.innerHTML = replacedHtmlEntities;
+            replacedTextareaElem.value = div.innerText;
+        }
+	    
+	function select() {
+         const input = document.getElementById('latin_textarea');
+ 	 input.focus();
+ 	 input.select();
+	}
+        function copytext() {
+        var copyText = document.getElementById("replaced_textarea");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999)
+        document.execCommand("copy");
+        }
+    </script>
+    
+<style>
+html {font-family:arial}
+table {
+  border-collapse: collapse;
+  width: 70%;
+}
+td, th {
+  border: 1px solid #AAA;
+  text-align: center;
+  padding: 1px;
+}
+textarea {
+	font-size: 13pt;
+	font-family: Arial;
+    width: 96%;
+} 
+.note {
+  border: 1px solid #DDD;
+  width: 45%;
+  text-align: left;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+</style>
+
+
+</head>
+<body>  
+
+<body>  
+
+<center><h1 class="text-center">French German typer</h1></center>
+
+<center>
+<table>
+<thead>
+<tr>
+<th>	
+<button onclick="select('latin_textarea')">Select all</button>
+<button onclick="document.getElementById('latin_textarea').value = ''">Clear</button>
+</th>
+<th>
+<button onclick="copytext()">Copy text</button><br>
+<button onclick="wikfr()">Wikt FR</button>
+<button onclick="wikfr()">Wikt DE</button>
+<script>
+function wikfr() {
+  window.open("https://en.wiktionary.org/wiki/" + document.getElementById('replaced_textarea').value + '#French', "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=0,left=300,width=600,height=600");
+}
+function wikde() {
+  window.open("https://en.wiktionary.org/wiki/" + document.getElementById('replaced_textarea').value + '#German', "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=0,left=300,width=600,height=600");
+}
+</script>
+</th>
+<th style="width:160px">Conversion table</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<textarea
+id="latin_textarea"
+autofocus=""
+placeholder="Latin text here"
+rows="10"
+oninput="onLatinTextChange(this.value)"></textarea>    
+</td>
+<td>
+<textarea rows="10" placeholder="output" id="replaced_textarea"></textarea>    
+</td>
+<td>
+
+<center>
+<div style="overflow-y: scroll; height:200px; width:140px">
+<table>
+<thead>
+<tr>
+<th>in.</th>
+<th>out.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>e1</td>
+<td>é</td>
+</tr>
+<tr>
+<td>a2</td>
+<td>â</td>
+</tr>
+<tr>
+<td>e2</td>
+<td>ê</td>
+</tr>
+<tr>
+<td>i2</td>
+<td>î</td>
+</tr>
+<tr>
+<td>o2</td>
+<td>ô</td>
+</tr>
+<tr>
+<td>u2</td>
+<td>û</td>
+</tr>
+<tr>
+<td>a3</td>
+<td>à</td>
+</tr>
+<tr>
+<td>e3</td>
+<td>è</td>
+</tr>
+<tr>
+<td>u3</td>
+<td>ù</td>
+</tr>
+<tr>
+<td>a4</td>
+<td>æ</td>
+</tr>
+<tr>
+<td>e4</td>
+<td>ë</td>
+</tr>
+<tr>
+<td>i4</td>
+<td>ï</td>
+</tr>
+<tr>
+<td>o4</td>
+<td>œ</td>
+</tr>
+<tr>
+<td>u4</td>
+<td>ü</td>
+</tr>
+<tr>
+<td>y4</td>
+<td>ÿ</td>
+</tr>
+<tr>
+<td>c4</td>
+<td>ç</td>
+</tr>
+<tr>
+<td>a;</td>
+<td>ä</td>
+</tr>
+<tr>
+<td>o;</td>
+<td>ö</td>
+</tr>
+<tr>
+<td>u;</td>
+<td>ü</td>
+</tr>
+<tr>
+<td>s;</td>
+<td>ß</td>
+</tr>
+<tr>
+<td>_</td>
+<td>—</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>«</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>»</td>
+</tr>
+<tr>
+<td>&quot;</td>
+<td>„</td>
+</tr>
+<tr>
+<td>&quot;&quot;</td>
+<td>“</td>
+</tr>
+<tr>
+<td>_</td>
+<td>–</td>
+</tr>
+<tr>
+<td>$</td>
+<td>€</td>
+</tr>
+<tr>
+<td>`</td>
+<td>#8203;</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</center>
+
+</td>
+</tr>
+</tbody>
+</table>
+</center>
+	
+
+
+</body>
+</html>
